@@ -1,11 +1,20 @@
 import React from "react";
 import { TodoAction } from "./ActionsTypes";
 
+export enum Status {
+  "TODO" = "TODO",
+  "BLOCKED" = "BLOCKED",
+  "IN_PROGRESS" = "IN_PROGRESS",
+  "IN_QA" = "IN_QA",
+  "DONE" = "DONE",
+  "DEPLOY" = "DEPLOY",
+}
+
 export interface TodoItemInterface {
   id: string;
   title: string;
-  description?: string;
-  status: string;
+  description: string;
+  status: Status;
 }
 
 export interface TodoListInterface {

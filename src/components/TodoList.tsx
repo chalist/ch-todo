@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Context as TodoContext } from "../context";
+import { Link } from "react-router-dom";
 
 const TodoList: React.FC = () => {
   const {
@@ -9,7 +10,9 @@ const TodoList: React.FC = () => {
   return todos.length > 0 ? (
     <ul>
       {todos.map(({ id, title }) => (
-        <li key={id}>{title}</li>
+        <li key={id}>
+          <Link to={`/edit/${id}`}>{title}</Link>
+        </li>
       ))}
     </ul>
   ) : (

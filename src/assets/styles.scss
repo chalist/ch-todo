@@ -1,8 +1,15 @@
-body{
+body {
     padding: 0;
     margin: 0;
 }
 
-#create-todo-form{
-    padding: 1rem;
+#create-todo-form {
+    padding: 2rem;
+}
+
+.MuiContainer-root {
+    @media (min-width: 960px) {
+        max-width: 750px !important;
+        padding: 0 !important;
+    }
 }

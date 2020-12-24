@@ -1,11 +1,7 @@
-import React, { useReducer } from "react";
+import React, { ReactElement, useReducer } from "react";
 import { TodoAction } from "./ActionsTypes";
 import { TodoListInterface, StateModel } from "./interfaces";
 import PropTypes from "prop-types";
-
-const defaultState: TodoListInterface = {
-  todos: [],
-};
 
 const reducer = (
   state: TodoListInterface,
@@ -18,6 +14,20 @@ const reducer = (
         todos: [...state.todos, action.payload],
       };
 
+    case "EDIT":
+      const indexOfItem = state.todos.findIndex(
+        (t) => t.id === action.payload.id
+      );
+      if (indexOfItem === -1) {
+        return state;
+      }
+      const todos = [...state.todos];
+      todos[indexOfItem] = action.payload;
+      return {
+        ...state,
+        todos,
+      };
+
     default:
       return state;
   }
@@ -25,8 +35,14 @@ const reducer = (
 
 export const Context = React.createContext({} as StateModel);
 
-export const Provider: React.FC = ({ children }) => {
+interface Props {
+  children: ReactElement;
+  defaultState: TodoListInterface;
+}
+
+export const Provider: React.FC<Props> = ({ children, defaultState }) => {
   const [state, dispatch] = useReducer(reducer, defaultState);
+  localStorage.setItem("app_state", JSON.stringify(state));
 
   return (
     <Context.Provider value={{ state, dispatch }}>{children}</Context.Provider>
@@ -34,5 +50,6 @@ export const Provider: React.FC = ({ children }) => {
 };
 
 Provider.propTypes = {
-  children: PropTypes.node,
+  children: PropTypes.any,
+  defaultState: PropTypes.any,
 };

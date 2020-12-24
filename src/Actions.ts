@@ -6,7 +6,7 @@ export const createTodo = (todo: TodoItemInterface): TodoAction => ({
   payload: todo,
 });
 
-// export const deleteTodo = (id: string): TodoAction => ({
-//   type: "DELETE",
-//   payload: id,
-// });
+export const editTodo = (todo: TodoItemInterface): TodoAction => ({
+  type: "EDIT",
+  payload: todo,
+});
