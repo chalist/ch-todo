@@ -1,6 +1,8 @@
 import React, { ReactElement, useReducer } from "react";
 import { TodoAction } from "./ActionsTypes";
 import { TodoListInterface, StateModel } from "./interfaces";
+import createHistory from "./lib/CreateHistory";
+
 import PropTypes from "prop-types";
 
 const reducer = (
@@ -21,8 +23,18 @@ const reducer = (
       if (indexOfItem === -1) {
         return state;
       }
+      const histories = state.todos[indexOfItem].history || [];
+      const history = createHistory(action.payload, state.todos[indexOfItem]);
+
       const todos = [...state.todos];
+
       todos[indexOfItem] = action.payload;
+      if (history.changes.length > 0) {
+        todos[indexOfItem].history = [history, ...histories];
+      } else {
+        todos[indexOfItem].history = histories;
+      }
+
       return {
         ...state,
         todos,

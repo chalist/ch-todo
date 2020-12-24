@@ -10,11 +10,21 @@ export enum Status {
   "DEPLOY" = "DEPLOY",
 }
 
+export interface TodoHistory {
+  date: Date;
+  changes: Array<{
+    from: string;
+    to: string;
+    keyName: string;
+  }>;
+}
+
 export interface TodoItemInterface {
   id: string;
   title: string;
   description: string;
   status: Status;
+  history?: TodoHistory[];
 }
 
 export interface TodoListInterface {

@@ -8,6 +8,12 @@ const theme = createMuiTheme({
       light: "#a2ceed",
     },
   },
+
+  overrides: {
+    todo_list: {
+      backgroundColor: "#1775b9",
+    },
+  },
 });
 
 export default theme;

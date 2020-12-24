@@ -1,6 +1,6 @@
 import React from "react";
 import AppBar from "@material-ui/core/AppBar";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import { Provider as TodoProvider } from "./context";
 import AddTodo from "./components/AddTodo";
@@ -18,7 +18,7 @@ import TodoForm from "./pages/TodoForm";
 
 import "./assets/styles.scss";
 
-function App() {
+const App: React.FC = () => {
   let defaultState = {
     todos: [],
   };
@@ -35,7 +35,11 @@ function App() {
         <Container maxWidth="md">
           <AppBar position="static">
             <Toolbar>
-              <Typography variant="h6">Task Management</Typography>
+              <Typography variant="h6">
+                <Link className="header_title" to="/">
+                  Task Management
+                </Link>
+              </Typography>
             </Toolbar>
           </AppBar>
           <TodoProvider defaultState={defaultState}>
@@ -58,6 +62,6 @@ function App() {
       </ThemeProvider>
     </Router>
   );
-}
+};
 
 export default App;

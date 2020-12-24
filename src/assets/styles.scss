@@ -1,6 +1,7 @@
 body {
     padding: 0;
     margin: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 #create-todo-form {
@@ -11,5 +12,29 @@ body {
     @media (min-width: 960px) {
         max-width: 750px !important;
         padding: 0 !important;
+    }
+}
+
+.header_title {
+    color: white;
+    text-decoration: none;
+}
+
+.todo_list {
+    background-color: #1775b9;
+    border-radius: 1.5rem 1.5rem 0 0;
+    color: white;
+
+    h1 {
+        padding: 1rem 3rem;
+        margin: 1rem 0 0 0;
+        font-size: 1.5rem;
+    }
+
+    ul {
+        background-color: #a2ceed;
+        border-radius: 1.5rem 1.5rem 0 0;
+        padding: 2rem;
+        margin: 0;
     }
 }
